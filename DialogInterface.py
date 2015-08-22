@@ -1,11 +1,11 @@
 import pygame
 from main import size
-from pygame.surface import Surface
 
 class DialogInterface:
-    def __init__(self, name, size, ):
+    def __init__(self, name, size):
         self.name = name
         self.size = size
+        screen = pygame.display.get_surface()
 
     def draw_portraits(self, Surface):
         self.fond = pygame.image.load("Portraits/bg_dialog.png")
