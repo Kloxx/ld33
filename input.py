@@ -11,7 +11,7 @@ class Input:
         self.mouseRelY = 0
         self.mouseButtons = []
         self.keys = []
-        for i in range(0, 5):
+        for i in range(0, 3):
             self.mouseButtons.append(False)
 
         # keyboard
@@ -30,9 +30,9 @@ class Input:
         for event in pygame.event.get():
             # mouse
             if event.type == pygame.MOUSEBUTTONDOWN:
-                self.mouseButtons[event.button-1] = True
+                self.mouseButtons[event.button] = True
             if event.type == pygame.MOUSEBUTTONUP:
-                self.mouseButtons[event.button-1] = False
+                self.mouseButtons[event.button] = False
             if event.type == pygame.MOUSEMOTION:
                 self.mouseX, self.mouseY = event.pos
                 self.mouseRelX, self.mouseRelY = event.rel
