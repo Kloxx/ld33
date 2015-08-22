@@ -1,0 +1,7 @@
+[background]
+assets/scene1/background.png
+
+[character]
+assets/scene1/character1.png
+assets/scene1/character2.png
+assets/scene1/character3.png
