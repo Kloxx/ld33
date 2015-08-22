@@ -17,8 +17,11 @@ class Input:
         # keyboard
         for i in range(0, 134):
             self.keys.append(False)
+
+        #other
+        self.quit = False
         
-    def updateEvents():
+    def updateEvents(self):
         self.mouseX = 0
         self.mouseY = 0
         self.mouseRelX = 0
@@ -26,31 +29,35 @@ class Input:
         
         for event in pygame.event.get():
             # mouse
-            if event.type == MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN:
                 self.mouseButtons[event.button] = True
-            if event.type == MOUSEBUTTONUP:
+            if event.type == pygame.MOUSEBUTTONUP:
                 self.mouseButtons[event.button] = False
-            if event.type == MOUSEMOTION:
+            if event.type == pygame.MOUSEMOTION:
                 self.mouseX, self.mouseY = event.pos
                 self.mouseRelX, self.mouseRelY = event.rel
 
             # keyboard
-            if event.type == KEYUP:
+            if event.type == pygame.KEYUP:
                 self.keys[event.key] = True
-            if event.type == KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 self.keys[event.key] = False
+				
+	    #other
+            if event.type == pygame.QUIT:
+                self.quit = True
             
-    def getKey(key):
+    def getKey(self, key):
         return self.keys[key]
 
-    def getMouseButton(button):
+    def getMouseButton(self, button):
         return self.mouseButtons[button]
 
-    def getMousePos():
+    def getMousePos(self):
         return self.mouseX, self.mouseY
 
-    def getMouseRel():
+    def getMouseRel(self):
         return self.mouseRelX, self.mouseRelY
 
-    def mouseMotion():
+    def mouseMotion(self):
         return self.mouseRelX or self.mouseRelY

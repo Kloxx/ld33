@@ -1,4 +1,5 @@
 import sys, pygame
+import Input
 
 size = width, height = 800, 600
 
@@ -15,14 +16,16 @@ def main(size):
 def mainLoop(screen):
     endLoop = 0
     background = 0, 0, 0
-    print(pygame.K_ESCAPE)
+    inputs = Input.Input()
     
     while not endLoop:
-        for event in pygame.event.get():
+        '''for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                endLoop = 1
-            if pygame.key.get_mods() == 27:
-                endLoop = 1
+                endLoop = 1'''
+        
+        inputs.updateEvents()
+        if inputs.quit == True or inputs.keys[pygame.K_ESCAPE] == True:
+            endLoop = 1
 
         screen.fill(background)
         pygame.display.flip()
