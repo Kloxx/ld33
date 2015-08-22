@@ -10,22 +10,22 @@ class Input:
         self.mouseRelX = 0
         self.mouseRelY = 0
         self.mouseButtons = []
-        self.keys = []
+        #self.keys = []
         for i in range(0, 5):
             self.mouseButtons.append(False)
 
         # keyboard
-        for i in range(0, 134):
-            self.keys.append(False)
+        '''for i in range(0, 134):
+            self.keys.append(False)'''
 
         #other
         self.quit = False
         
     def updateEvents(self):
-        self.mouseX = 0
-        self.mouseY = 0
         self.mouseRelX = 0
         self.mouseRelY = 0
+        for i in range(0, 5):
+            self.mouseButtons[i] = False
         
         for event in pygame.event.get():
             # mouse
@@ -38,10 +38,10 @@ class Input:
                 self.mouseRelX, self.mouseRelY = event.rel
 
             # keyboard
-            if event.type == pygame.KEYUP:
-                self.keys[event.key] = True
-            if event.type == pygame.KEYDOWN:
-                self.keys[event.key] = False
+            if event.type == pygame.KEYUP and event.key == pygame.K_ESCAPE:
+                self.quit = True
+            '''if event.type == pygame.KEYDOWN:
+                pass'''
 				
 	    #other
             if event.type == pygame.QUIT:
