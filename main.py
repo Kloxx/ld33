@@ -22,14 +22,6 @@ def mainLoop(screen):
         inputs.updateEvents()
         if inputs.quit == True or inputs.keys[pygame.K_ESCAPE] == True:
             endLoop = 1
-        if inputs.mouseButtons[0]:
-            background = 255, 0, 0
-        if inputs.mouseButtons[1]:
-            background = 0, 255, 0
-        if inputs.mouseButtons[2]:
-            background = 0, 0, 255
-        if inputs.mouseButtons[3]:
-            background[0] -= 10
 
         screen.fill(background)
         pygame.display.flip()
