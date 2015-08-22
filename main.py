@@ -1,5 +1,5 @@
 import sys, pygame
-import Input
+import Input, Scene
 
 size = width, height = 800, 600
 
@@ -17,6 +17,7 @@ def mainLoop(screen):
     endLoop = 0
     background = 0, 0, 0
     inputs = Input.Input()
+    scene = Scene.Scene("scenes\scene1.txt")
     
     while not endLoop:        
         inputs.updateEvents()
@@ -24,6 +25,7 @@ def mainLoop(screen):
             endLoop = 1
 
         screen.fill(background)
+        scene.drawScene(screen)
         pygame.display.flip()
 
 main(size)
