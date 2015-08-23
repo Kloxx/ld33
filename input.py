@@ -54,10 +54,10 @@ class Input:
         return self.mouseButtons[button]
 
     def getMousePos(self):
-        return self.mouseX, self.mouseY
+        return (self.mouseX, self.mouseY)
 
     def getMouseRel(self):
-        return self.mouseRelX, self.mouseRelY
+        return (self.mouseRelX, self.mouseRelY)
 
     def mouseMotion(self):
         return self.mouseRelX or self.mouseRelY

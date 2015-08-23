@@ -3,12 +3,16 @@ import Input
 
 class Scene:
     def __init__(self, txtFile):
-        var = None
         self.character = []
+        self.background = None
         self.characterPos = 100
         self.characterDest = 100
         self.characterFace = 1
         self.frame = 0
+        self.loadAssets(txtFile)
+
+    def loadAssets(self, txtFile):
+        var = None
         txtFile = open(txtFile, "r")
         for line in txtFile.read().split("\n"):
             if line == "[background]":
@@ -21,9 +25,9 @@ class Scene:
                 var = None
             if line:
                 if var == 0:
-                    self.background = pygame.image.load(line)
+                    self.background = pygame.image.load(line).convert()
                 if var == 1:
-                    self.character.append(pygame.image.load(line))
+                    self.character.append(pygame.image.load(line).convert_alpha())
         txtFile.close()
 
     def drawScene(self, screen):
@@ -39,12 +43,13 @@ class Scene:
             i = 2
         self.setCharacterPos()
         if not self.characterFace:
-            screen.blit(self.character[i], (self.characterPos, 300))
+            screen.blit(self.character[i], (self.characterPos - self.character[i].get_size()[0]/2, 300))
         if self.characterFace:
-            screen.blit(pygame.transform.flip(self.character[i], 1, 0), (self.characterPos, 300))
+            screen.blit(pygame.transform.flip(self.character[i], 1, 0), (self.characterPos - self.character[i].get_size()[0]/2, 300))
         self.frame = (self.frame + 1) %60
 
     def setCharacterDest(self, pos):
+        
         self.characterDest = pos
 
     def setCharacterPos(self):

@@ -1,5 +1,5 @@
 import sys, pygame
-import Input, Scene
+import Input, Scene, Map
 
 size = width, height = 800, 600
 
@@ -19,9 +19,10 @@ def mainLoop(screen):
     frames = 0
     frameTime = 1000 / 60
     endLoop = 0
-    background = 0, 0, 0
+    background = 150, 150, 150
     inputs = Input.Input()
     scene = Scene.Scene("scenes\scene1.txt")
+    shipMap = Map.Map()
     
     while not endLoop:
         startFrame = pygame.time.get_ticks()
@@ -29,11 +30,13 @@ def mainLoop(screen):
         inputs.updateEvents()
         if inputs.quit == True:
             endLoop = 1
+        if inputs.mouseRelX or inputs.mouseRelY:
+            shipMap.isHovered(inputs.getMousePos())
         if inputs.mouseButtons[0]:
             scene.setCharacterDest(inputs.getMousePos()[0])
         
         screen.fill(background)
-        scene.drawScene(screen)
+        shipMap.draw(screen)
         pygame.display.flip()
 
         # manage framerate
@@ -48,5 +51,9 @@ def mainLoop(screen):
     print("Frames : " + str(frames))
     print("Time Running : " + str(totalTime / 1000) + "s")
     print(avgFramerate)
+
+def game(screen):
+    pass
+    
 
 main(size)
