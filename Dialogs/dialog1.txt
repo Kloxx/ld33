@@ -1,0 +1,32 @@
+[character1]
+assets/dialog1/happy.png
+assets/dialog1/normal.png
+
+[character2]
+assets/dialog1/okay.png
+assets/dialog1/sad.png
+
+[background]
+assets/scene1/background.png
+
+[question]
+You ugly! Me friend. You?
+
+[words]
+you
+me
+friend
+ugly
+
+[other]
+NEW WORDS : you - me - friend - ugly - (yes)
+- Me friend 
+/ :) (unlock)
+- You friend 
+> Yes, me friend. You?
+- Me ugly 
+/ ahah
+any with you+ugly
+/ Grrr
+- ... 
+/ ?

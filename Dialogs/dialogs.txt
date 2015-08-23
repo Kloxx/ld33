@@ -1,0 +1,128 @@
+- précède une combinaison
+/ précède une réaction
+> précède une réplique
+() une conséquence
+
+me you ugly friend yes cook good no question 
+
+1. GUARD (LAB) / 
+You ugly! Me friend. You?
+NEW WORDS : you - me - friend - ugly - (yes)
+- Me friend 
+/ :) (unlock)
+- You friend 
+> Yes, me friend. You?
+- Me ugly 
+/ ahah
+any with you+ugly
+/ Grrr
+- ... 
+/ ?
+
+2. COOK / :(
+Me ugly cook. You good?
+NEW WORDS : cook - good - (no)
+- Me good
+- Me good cook
+- Yes
+/ :) > Good! You cook. (unlock)
+- No
+- Me ugly cook
+- Me ugly
+- any with you+ugly
+/ :(
+- You good
+- You good cook
+- any with friend and no ugly
+/ :) > No, me ugly. You good?
+- me ugly
+- me ugly cook
+/ No > No (reboot)
+- cook me
+/ ahah
+- ... 
+/ ?
+
+3. ANGRY GUARD (X-RAY) / Grrr
+NEW WORD : n/d
+You friend?
+- no
+- me monster
+- monster
+- no friend
+/ Grrr (Game Over)
+- you monster
+> No!
+any with you+ugly
+/ Grrr
+- no monster
+- me friend
+- me good
+- friend
+/ Good
+- me good cook
+- cook me
+/ Ahah
+- ...
+/ ?
+
+4. LOVER / :)
+NEW WORD : monster
+You good. You love me? 
+- me love you 
+- yes
+/ :) >you good cook?
+    - yes
+    / :) + hug > You monster! (runaway)
+- any with no
+/ :(
+- any with you + ugly
+/ Grrr (game over)
+
+5. DOCTOR / Grrr
+Where monster? You monster?
+- no
+- no monster
+- me no monster
+- me friend
+- me good
+/ Grrr (runaway)
+- yes
+- me monster
+- me no friend
+- no friend
+/ Grrr (game over)
+
+6. COMPUTER
+?
+- Me monster
+- Me ugly
+- Me ugly friend
+- Me good monster
+- Me bad cook
+> Yes
+- Me friend
+- Me good
+- Me good friend
+- Me good cook
+> No
+- You ugly
+> No. You ugly.
+- Where monster
+- Where me friend
+> Earth
+- Where Earth
+> 2Z6-KB4 (unlock)
+- Where friend?
+> Zylex
+- Where Zylex
+> 7K7-BC2
+- Where cook?
+> You cook
+- Where ugly?
+> You
+- where good
+- where 
+> good question
+- ...
+> ugly question
