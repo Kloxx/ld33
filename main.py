@@ -35,7 +35,7 @@ def mainLoop(screen):
             scene.setCharacterDest(inputs.getMousePos()[0])'''
         
         screen.fill(background)
-        dialog.draw_portraits(screen)
+        dialog.draw(screen)
         pygame.display.flip()
 
         # manage framerate
