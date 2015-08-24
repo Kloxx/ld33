@@ -47,4 +47,4 @@ class Map:
         for index, room in enumerate(self.isRoomHovered):
             if room:
                 return index
-        return -1
+        return None

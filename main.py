@@ -19,28 +19,56 @@ def mainLoop(screen):
     frameTime = 1000 / 60
     endLoop = 0
     background = 150, 150, 150
+    black = 0, 0, 0
     inputs = Input.Input()
     #shipMap = Map.Map()
     #scene = Scene.Scene(size, "scenes/scene1.txt")
-    dialog = Dialog.Dialog(size, "Dialogs/dialog1.txt")
+    #dialog = Dialog.Dialog(size, "Dialogs/dialog1.txt")
+    gameStart = True
+    trigger = None
+    changeScreen = False
     
     while not endLoop:
         startFrame = pygame.time.get_ticks()
-        
+
+        # inputs
         inputs.updateEvents()
         if inputs.quit == True:
             endLoop = 1
         if inputs.mouseRelX or inputs.mouseRelY:
-            #shipMap.isHovered(inputs.getMousePos())
+            if currentType == 2:
+                current.isHovered(inputs.getMousePos())
             pass
         if inputs.mouseButtons[0]:
-            dialog.isBoxClicked(inputs.getMousePos())
+            if currentType == 0:
+                current.setCharacterDest(inputs.mouseX)
+            if currentType == 1:
+                trigger = current.isBoxClicked(inputs.getMousePos())
+            if currentType == 2:
+                trigger = current.getClickedRoom()
+                print(trigger)
             pass
+
+        if gameStart:
+            current = Map.Map()
+            currentType = 2
+            currentIndex = 0
+            gameStart = False
+
+        if trigger is not None:
+            current, currentType, currentIndex, changeScreen = triggerManager(trigger, current, currentType, currentIndex)
+            trigger = None
+            
+        if changeScreen:
+            screen.fill(black)
+            pygame.display.flip()
+            pygame.time.delay(1000)
+            changeScreen = False
         
         screen.fill(background)
-        #scene.draw(screen)
+        current.draw(screen)
         #shipMap.draw(screen)
-        dialog.draw(screen)
+        #dialog.draw(screen)
         pygame.display.flip()
 
         # manage framerate
@@ -56,8 +84,19 @@ def mainLoop(screen):
     print("Time Running : " + str(totalTime / 1000) + "s")
     print(avgFramerate)
 
-def game(screen):
-    pass
-    
+def triggerManager(trigger, current, currentType, currentIndex):
+    print('trigger : ', trigger)
+    changeScreen = False
+    if currentType == 0:
+        pass
+    if currentType == 1:
+        pass
+    if currentType == 2:
+        if trigger == 0:
+            current = Dialog.Dialog(size, "Dialogs/dialog1.txt")
+            currentType = 1
+            currentIndex = 0
+            changeScreen = True
+    return current, currentType, currentIndex, changeScreen
 
 main(size)

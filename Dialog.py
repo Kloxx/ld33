@@ -72,6 +72,8 @@ class Dialog:
                                 self.isWordUsed.append(True)
                 for word in self.words:
                         self.wordSurfaces.append(self.txtFont.render(word, 1, self.txtColor))
+
+                # others
                 self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor)
                 self.confirmBox = pygame.Rect((self.size[0] * 5/8, self.size[1] * 37/40),
                                               (self.size[0] * 0.125, boxHeight))
@@ -110,7 +112,7 @@ class Dialog:
                                 print(self.answerCode)
                                 print(self.answer)
                 if self.confirmBox.collidepoint(pos) and len(self.answerCode):
-                        self.checkAnswer(self.answerCode)
+                        return self.checkAnswer(self.answerCode)
                 if self.cancelBox.collidepoint(pos) and len(self.answerCode):
                         self.isWordUsed[int(self.answerCode[-1], 16)] = False
                         self.answerCode = self.answerCode[:-1]
@@ -122,7 +124,10 @@ class Dialog:
         def checkAnswer(self, key):
                 if key in self.answerCheck:
                         print("reaction : ", self.answerCheck[key])
-                self.resetAnswer()
+                        self.resetAnswer()
+                        return int(self.answerCheck[key])
+                else:
+                        self.resetAnswer()
 
         def resetAnswer(self):
                 pygame.time.delay(500)
@@ -133,4 +138,4 @@ class Dialog:
                         if i < len(self.words):
                                 self.isWordUsed[i] = False
                         else:
-                                self.isWordUsed[i] = True
+                                self.isWordUsed[i] = True 
