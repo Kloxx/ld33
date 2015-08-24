@@ -6,6 +6,9 @@ class Dialog:
 		self.char1 = []
 		self.char2 = []
 		self.words = []
+		self.answerCode = ""
+		self.answer = []
+		self.isWordUsed = []
 		self.txtColor = 0, 0, 0
 		self.loadAssets(txtFile)
 		self.loadText()
@@ -52,14 +55,21 @@ class Dialog:
                 self.wordBoxes = []
                 self.wordSurfaces = []
                 box = boxWidth, boxHeight = int(self.size[0] * 0.225), int(self.size[1] * 0.05)
-                print(box)
                 for i in range(12):
                         self.wordBoxes.append(pygame.Rect(
                                 (self.size[0] * 0.245 * (i%4) + self.size[0] / 50,
                                  self.size[1] * 0.075 * (i/4) + self.size[1] * 0.7), box))
+                        if i < len(self.words):
+                                self.isWordUsed.append(False)
+                        else:
+                                self.isWordUsed.append(True)
                 for word in self.words:
                         self.wordSurfaces.append(self.txtFont.render(word, 1, self.txtColor))
-                self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor) 
+                self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor)
+                self.confirmBox = pygame.Rect((self.size[0] * 5/8, self.size[1] * 37/40),
+                                              (self.size[0] * 0.125, boxHeight))
+                self.cancelBox = pygame.Rect((self.size[0] * 13/16, self.size[1] * 37/40),
+                                             (self.size[0] * 0.125, boxHeight))
                                
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
@@ -69,12 +79,35 @@ class Dialog:
 		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
                 for index, box in enumerate(self.wordBoxes):
                         if index < len(self.words):
-                                pygame.draw.rect(screen, (255,255,255), box)
+                                if self.isWordUsed[index]:
+                                        pygame.draw.rect(screen, (120,120,120), box)
+                                else:
+                                        pygame.draw.rect(screen, (255,255,255), box)
                                 screen.blit(self.wordSurfaces[index],
                                             (box.centerx - self.wordSurfaces[index].get_width() / 2,
                                              box.centery - self.wordSurfaces[index].get_height() / 2))
                         else:
                                 pygame.draw.rect(screen, (120,120,120), box)
+                pygame.draw.rect(screen, (0,255,0), self.confirmBox)
+                pygame.draw.rect(screen, (255,0,0), self.cancelBox)
+                
+
+        def isBoxClicked(self, pos):
+                for index, box in enumerate(self.wordBoxes):
+                        if box.collidepoint(pos) and not self.isWordUsed[index] and len(self.answerCode) < 3:
+                                self.answerCode += "%0.1X" % index
+                                self.answer.append(self.words[index])
+                                self.isWordUsed[index] = True
+                                print(self.answerCode)
+                                print(self.answer)
+                if self.confirmBox.collidepoint(pos) and len(self.answerCode):
+                        print("confirm")
+                if self.cancelBox.collidepoint(pos) and len(self.answerCode):
+                        self.isWordUsed[int(self.answerCode[-1])] = False
+                        self.answerCode = self.answerCode[:-1]
+                        self.answer = self.answer[:-1]
+                        print(self.answerCode)
+                        print(self.answer)
 
 	def draw_menu(self, screen):
 		menu_font = pygame.font.Font(None, 36)

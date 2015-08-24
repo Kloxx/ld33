@@ -1,7 +1,7 @@
 import sys, pygame
 import Input, Scene, Map, Dialog
 
-size = width, height = 1600,1000
+size = width, height = 1200,750
 def main(size):
     pygame.init()
     screen = pygame.display.set_mode(size)
@@ -34,6 +34,7 @@ def mainLoop(screen):
             #shipMap.isHovered(inputs.getMousePos())
             pass
         if inputs.mouseButtons[0]:
+            dialog.isBoxClicked(inputs.getMousePos())
             pass
         
         screen.fill(background)
