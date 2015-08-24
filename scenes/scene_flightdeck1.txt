@@ -1,0 +1,14 @@
+[]
+
+[]
+
+[objects]
+
+Screen:000:That's the navigation system.:I could divert the ship to Earth, but I need coordinates.:Maybe the big computer next door knows the coordinates?::
+
+Windshield:000:Hey! Why didn't I get the room with view?:I hope they have big wipers for space bugs.:Isn't that Rigel VII on the left?:I never could find my bearings out of the Milky Way...:
+Control stick:000:Cool! Let's play some Invaders!:That's one big fat stick.:No more comment on the matter.:Pervert!:No. I won't.
+
+[others]
+
+:000:::::

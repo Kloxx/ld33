@@ -27,6 +27,7 @@ def mainLoop(screen):
     gameStart = True
     trigger = None
     changeScreen = False
+    isTriggered = [0,0,0,0,0,0,0,0] # global vars
     
     while not endLoop:
         startFrame = pygame.time.get_ticks()
@@ -41,25 +42,31 @@ def mainLoop(screen):
             pass
         if inputs.mouseButtons[0]:
             if currentType == 0:
-                trigger = current.setCharacterDest(inputs.mouseX)
+                current.onClick(inputs.mouseX)
             if currentType == 1:
                 trigger = current.isBoxClicked(inputs.getMousePos())
             if currentType == 2:
                 trigger = current.getClickedRoom()
                 print(trigger)
             pass
-        if inputs.trigger:
-            print('no error')
+        if inputs.mouseButtons[2]:
+            current.displayComment("blabla")
+        if inputs.trig:
+            trigger = inputs.trigger
 
         if gameStart:
             print('intro')
-            current = Map.Map()
-            currentType = 2
-            currentIndex = 0
+            current = Scene.Scene(size, "scenes/scene_lab1.txt")
+            currentType = 0
+            currentIndex = 2
             gameStart = False
 
         if trigger is not None:
-            current, currentType, currentIndex, changeScreen = triggerManager(trigger, current, currentType, currentIndex)
+            changeState = None
+            current, currentType, currentIndex, changeScreen, changeState = triggerManager(trigger, current, currentType, currentIndex, isTriggered)
+            if changeState is not None:
+                isTriggered[changeState] = 1
+                print(isTriggered)
             trigger = None
             
         if changeScreen:
@@ -87,26 +94,112 @@ def mainLoop(screen):
     print("Time Running : " + str(totalTime / 1000) + "s")
     print(avgFramerate)
 
-def triggerManager(trigger, current, currentType, currentIndex):
+def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
     print('trigger : ', trigger)
     changeScreen = False
+    changeState = None
+    # scenes
     if currentType == 0:
-        pass
+        if currentIndex == 2:
+            # lab
+            current.displayComment(trigger)
+            if trigger == 0: # box
+                changeState = 0
+            if trigger == 1: # switch
+                changeState = 1
+            if trigger == 2: # door
+                if isTriggered[0] and isTriggered[1]:
+                    # -> dialog guard1
+                    current = Dialog.Dialog(size, "dialogs/dialog_walkway1.txt")
+                    currentType = 1
+                    currentIndex = 4
+                    changeScreen = True
+                elif isTriggered[0] or not(isTriggered[0] and isTriggered[1]): # ferme
+                    pass
+                elif isTriggered[1]: # ouvert, mais...
+                    pass
+        if currentIndex == 5:
+            # cantina
+            if trigger == 0: # cook
+                # -> dialog cook
+                current = Dialog.Dialog(size, "dialogs/dialog_cantina1.txt")
+                currentType = 1
+                currentIndex = 6
+                changeScreen = True
+        if currentIndex == 10:
+            # mainframe
+            if trigger == 0: # guard2
+                # -> dialog guard2
+                current = Dialog.Dialog(size, "dialogs/dialog_mainframe1.txt")
+                currentType = 1
+                currentIndex = 8
+                changeScreen = True
+            if trigger == 1: # computer
+                # -> dialog computer
+                current = Dialog.Dialog(size, "dialogs/dialog_mainframe2.txt")
+                currentType = 1
+                currentIndex = 9
+                changeScreen = True
+        if currentIndex == 12:
+            # deck
+            if trigger == 0: # navigator
+                current = Dialog.Dialog(size, "dialogs/dialog_flightdeck1.txt")
+                currentType = 1
+                currentIndex = 11
+                changeScreen = True             
+                
+
+    # dialogs
     elif currentType == 1:
         if trigger == 0:
             if currentIndex == 4:
-                print('load map')
+                # end guard1 -> map
                 current = Map.Map()
                 currentType = 2
                 currentIndex = 0
                 changeScreen = True
+                changeState = 2
+            if currentIndex == 6:
+                # end cook -> cantina
+                current = Scene.Scene(size, "scenes/scene_cantina1.txt")
+                currentType = 0
+                currentIndex = 5
+                changeScreen = True
+                changeState = 3
+            if currentIndex == 8:
+                # end guard2 -> mainframe
+                current = Scene.Scene(size, "scenes/scene_mainframe1.txt")
+                currentType = 0
+                currentIndex = 10
+                changeScreen = True
+                changeState = 5
+            if currentIndex == 9:
+                # end computer -> mainframe
+                current = Scene.Scene(size, "scenes/scene_mainframe1.txt")
+                currentType = 0
+                currentIndex = 10
+                changeScreen = True
+                changeState = 6
+            if currentIndex == 11:
+                # end navigator -> deck
+                current = Scene.Scene(size, "scenes/scene_flightdeck1.txt")
+                currentType = 0
+                currentIndex = 12
+                changeScreen = True
+                changeState = 7
+
+    # map
     elif currentType == 2:
-        if trigger == 0:
-            print('load walkway')
-            current = Dialog.Dialog(size, "Dialogs/dialog_walkway1.txt")
-            currentType = 1
-            currentIndex = 4
-            changeScreen = True
-    return current, currentType, currentIndex, changeScreen
+        if trigger == 0: # cantina
+            pass
+        if trigger == 1: # labo
+            pass
+        if trigger == 2: # deck
+            pass
+        if trigger == 3: # mainframe
+            pass
+        if trigger == 4: # walkway
+            pass
+    return current, currentType, currentIndex, changeScreen, changeState
 
 main(size)

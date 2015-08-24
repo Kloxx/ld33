@@ -1,0 +1,19 @@
+[]
+
+[]
+
+[objects]
+
+Cook:0,0,100,100:::::
+Blender:000:That big guy is blocking the way.:Looks like he's the chef.:::
+Menu:000:Gibberish.:I sure hope they're vegetarians.:I wonder what's for dessert?::
+Empty table:000:One big empty table all to myself.:Just like in High School.:*SIGH*::
+
+Stains:000:Disdain for sanitary regulations seems to be a universal trait.:Hey man, I'm a cook. Not my job.:I'll call health and safety on their asses.:Disgusting.:
+Trade union poster:000:"Join ZULUX and get raised!":Looks like some more trade union propaganda.:I didn't see them at the last meeting.:I DO deserve a raise. Maybe I'll sign up.:
+Pink slime:000:So THIS is how it's made.:I'm not eating this, mate.:I bet it's full of cholesterol.:I've got a bad enough breath already.:
+
+[others]
+
+Blender_unlocked:000:I'll cook my favorite, burned steak with overcooked pasta!:That guard out there sure seems to like it.:And Geena always said I was a terrible cook!:Maybe I could settle here, be a chef.:
+Empty table_guard eating:000:Hey! It's that guard from before.:Boy, he sure seems to enjoy his plate.:I wonder who's guarding the computer room now...::

@@ -2,8 +2,9 @@ import pygame
 import Input
 
 class Map:
-    def __init__(self):
-        self.mapSurface = pygame.image.load("assets/map/map.png").convert_alpha()
+    def __init__(self, size):
+        self.size = size
+        self.mapSurface = pygame.transform.scale(pygame.image.load("assets/map/map.png").convert_alpha(), self.size)
         txtFile = open("assets/map/map.txt", "r")
         var = None
         self.coordinates = []
@@ -18,20 +19,24 @@ class Map:
                 var = 1
                 self.coordinates.append([])
                 continue
-            if line == "[pont]":
+            if line == "[deck]":
                 var = 2
                 self.coordinates.append([])
                 continue
-            if line == "[ordi]":
+            if line == "[mainframe]":
                 var = 3
                 self.coordinates.append([])
                 continue
+            if line == "[walkway]":
+                var = 4
+                self.coordinates.append([])
+                continue
             if line:
-                x,y = line.split(",")
-                self.coordinates[var].append((int(x),int(y)))
+                x,y,w,h = line.split(",")
+                x,y,w,h = int(x), int(y), int(w), int(h)
+                x,y,w,h = x*self.size[0]/800, y*self.size[1]/600, w*self.size[0]/800, h*self.size[1]/600
+                self.roomRects.append(pygame.Rect(x,y,w,h))
                 self.isRoomHovered.append(False)
-        for coord in self.coordinates:
-            self.roomRects.append(pygame.Rect(coord[0],coord[2]))
 
     def draw(self, screen):
         for index, room in enumerate(self.roomRects):

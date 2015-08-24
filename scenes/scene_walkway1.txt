@@ -1,0 +1,15 @@
+[]
+
+[]
+
+[objects]
+
+Exit:000:Looks like our friend here is guarding the passage.:I guess I should talk to him.:I bet he's a good person.:Maybe we can be friends?:
+
+Arrows:000:It seems to be this way.:Or maybe that way?:They seem to have no sense of direction around here.::
+Tunnel:000:Looks like a dump. Litterally.:I don't want to go in there!:I'll end up crushed between two walls.:I bet there's a big slimy worm in there!:
+Minigun:000:That thing looks positively deadly.:Well, nothing positive about it, really.:It's welded to the ceilling, mate.:I wish I could.:
+
+[others]
+
+:000:::::

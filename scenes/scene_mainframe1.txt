@@ -1,0 +1,16 @@
+[]
+
+[]
+
+[objects]
+
+Guard:000:::::
+Computer:000:::::
+Keypad:000:Definitely not designed for human fingers.::::
+Printer:000:Let's see...:"Monthly report on power efficiency in Sector G":Petition to kill the ship's cook and then cook him.:"Earthlings' blood, the new clean energy.":
+Sound system:000:Boy, this is what I call a stereo!:If only I had took my vintage records with me.:I wonder what their music sound like.:Probably something like Justin Bieber.:
+Plug:000:I hear these things work much better with the power on.:I'm not touching that, I could die in atrocious pain.:It's screwed, ans so am I.::
+
+[others]
+
+:000:::::

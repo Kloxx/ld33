@@ -19,8 +19,8 @@ class Input:
             self.keys.append(False)'''
 
         #other
-        self.trig = 0
-        self.trigger = 0
+        self.trig = False
+        self.trigger = None
         self.quit = False
         
     def updateEvents(self):

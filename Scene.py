@@ -15,8 +15,12 @@ class Scene:
         self.objectFont = pygame.font.Font(None, 36)
         self.objectNames = []
         self.objectRects = []
+        self.objectComments = []
+        self.objectCommentCount = []
         self.isObjectHovered = []
         self.trigger = None
+        self.showComment = False
+        self.commentText = None
 
         self.loadAssets(txtFile)
 
@@ -44,11 +48,18 @@ class Scene:
                 if var == 2:
                     name = line.split(":")[0]
                     coord = line.split(":")[1]
+                    comments = line.split(":")[2:]
                     x,y,w,h = coord.split(",")
                     x,y,w,h = int(x), int(y), int(w), int(h)
                     self.objectNames.append(name)
                     self.isObjectHovered.append(False)
-                    self.objectRects.append(pygame.Rect(x,y,w,h)) 
+                    self.objectRects.append(pygame.Rect(x,y,w,h))
+                    temp = []
+                    for comment in comments:
+                        if comment:
+                            temp.append(comment)
+                    self.objectComments.append(temp)
+                    self.objectCommentCount.append(0)
         txtFile.close()
 
     def draw(self, screen):
@@ -64,9 +75,9 @@ class Scene:
             i = 2
         self.setCharacterPos()
         if not self.characterFace:
-            screen.blit(self.character[i], (self.characterPos - self.character[i].get_size()[0]/2, 300))
+            screen.blit(self.character[0], (self.characterPos - self.character[0].get_size()[0]/2, 300))
         if self.characterFace:
-            screen.blit(pygame.transform.flip(self.character[i], 1, 0), (self.characterPos - self.character[i].get_size()[0]/2, 300))
+            screen.blit(pygame.transform.flip(self.character[0], 1, 0), (self.characterPos - self.character[0].get_size()[0]/2, 300))
         self.frame = (self.frame + 1) %60
         
         # objects
@@ -77,6 +88,16 @@ class Scene:
             objectNamePosition.y = self.pos[1] + 15
             screen.blit(objectNameDisplay, objectNamePosition)
 
+		# comments
+        if self.showComment:
+            commentDisplay = self.objectFont.render(self.commentText, 1, (255, 255, 255))
+            commentPosition = commentDisplay.get_rect()
+            commentPosition.centerx = self.characterPos
+            commentPosition.y = 300 - 30
+            screen.blit(commentDisplay, commentPosition)
+            pygame.display.flip()
+            pygame.time.delay(2500)
+            self.showComment = False
 
     def setCharacterDest(self, pos):
         
@@ -101,10 +122,10 @@ class Scene:
 
     def isHovered(self, pos):
         self.pos = pos
-        for index, object in enumerate(self.objectRects):
-            self.isObjectHovered[index] = object.collidepoint(pos)
-        for index, object in enumerate(self.isObjectHovered):
-            if object:
+        for index, obj in enumerate(self.objectRects):
+            self.isObjectHovered[index] = obj.collidepoint(pos)
+        for index, obj in enumerate(self.isObjectHovered):
+            if obj:
                 return index
         return None
 
@@ -119,3 +140,9 @@ class Scene:
 
         if self.getClickedObject != None:
             self.trigger = {'trigger': self.getClickedObject()}
+
+    def displayComment(self, trigger):
+        self.showComment = True
+        self.commentText = self.objectComments[trigger][self.objectCommentCount[trigger]]
+        if len(self.objectComments[trigger]) < self.objectCommentCount[trigger]:
+            self.objectCommentCount[trigger] += 1

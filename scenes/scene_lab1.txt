@@ -1,0 +1,22 @@
+[background]
+assets/backgrounds/back1.png
+
+[character]
+assets/dialog1/happy.png
+
+[objects]
+Box:120,120,100,100:Boy! That would make some fine disguise.::::
+Switch:300,400,100,100:Wow, magic! Their technology is so much more advanced than ours!::::
+Door:600,100,100,100:It's locked.:I feel like that locked door is limiting my options.:Locked. I'll just stay here and die of boredom.::
+
+[othe]
+Hamburgers:000:I knew it! These things are too good to be made by earthlings.:Wait... These are McFishes! What a bummer...:There's no way I eat this, mate.::
+Coke:000:Black liquid, red label, chemical bubbles...:That's coke alright!:Or is it? *GLUG GLUG GLUG*:*BUUURP!* Definitely coke.:
+FeltPens:000:Hm... I guess I could draw one big eye on my forehead.:But would that really be enough to dupe them?:They look stupid, but not THAT stupid.::
+Piano:000:I wish I didn't quit piano lessons when I was 5.:Mrs. Pickeridge was such a weird teacher, though.:I guess I could play a lullaby, but there's nobody to put asleep.::
+Street lamp:000:It's time we shed some light on this affair...:I wish it was a street light-saber!:This doesn't seem to help advance our cause.::
+Rocking horse:000:Well, don't get on your high horse yet.:I don't feel quite in the mood for this.:::
+
+[others]
+
+Door_open:000:There's a guard out there.:I can't go out dressed like that.:I need big guns!:Or maybe a disguise?:
