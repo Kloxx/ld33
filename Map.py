@@ -42,3 +42,9 @@ class Map:
     def isHovered(self, pos):
         for index, room in enumerate(self.roomRects):
             self.isRoomHovered[index] = room.collidepoint(pos)
+
+    def getClickedRoom(self):
+        for index, room in enumerate(self.isRoomHovered):
+            if room:
+                return index
+        return -1
