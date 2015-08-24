@@ -7,6 +7,8 @@ def main(size):
     screen = pygame.display.set_mode(size)
     pygame.event.set_blocked((pygame.JOYAXISMOTION, pygame.JOYBALLMOTION, pygame.JOYHATMOTION,
                              pygame.JOYBUTTONUP, pygame.JOYBUTTONDOWN))
+    cursor = pygame.cursors.broken_x
+    pygame.mouse.set_cursor(*cursor)
 
     mainLoop(screen)
 
@@ -15,6 +17,9 @@ def main(size):
 
 
 def mainLoop(screen):
+    # pygame.mouse.set_cursor(*pygame.cursors.arrow)
+    cursor = pygame.cursors.broken_x
+    pygame.mouse.set_cursor(*cursor)
     frames = 0
     frameTime = 1000 / 60
     endLoop = 0
@@ -41,20 +46,22 @@ def mainLoop(screen):
             pass
         if inputs.mouseButtons[0]:
             if currentType == 0:
-                trigger = current.setCharacterDest(inputs.mouseX)
+                # current.setCharacterDest(inputs.mouseX)
+                current.onClick(inputs.mouseX)
             if currentType == 1:
                 trigger = current.isBoxClicked(inputs.getMousePos())
             if currentType == 2:
                 trigger = current.getClickedRoom()
                 print(trigger)
             pass
-        if inputs.trigger:
-            print('no error')
+        
+        if inputs.trig:
+            print('azeaze')
+            print(inputs.trigger)
 
         if gameStart:
-            print('intro')
-            current = Map.Map()
-            currentType = 2
+            current = Scene.Scene(size, "scenes/scene1.txt")
+            currentType = 0
             currentIndex = 0
             gameStart = False
 
@@ -65,7 +72,7 @@ def mainLoop(screen):
         if changeScreen:
             screen.fill(black)
             pygame.display.flip()
-            pygame.time.delay(500)
+            pygame.time.delay(1000)
             changeScreen = False
         
         screen.fill(background)
@@ -92,20 +99,13 @@ def triggerManager(trigger, current, currentType, currentIndex):
     changeScreen = False
     if currentType == 0:
         pass
-    elif currentType == 1:
+    if currentType == 1:
+        pass
+    if currentType == 2:
         if trigger == 0:
-            if currentIndex == 4:
-                print('load map')
-                current = Map.Map()
-                currentType = 2
-                currentIndex = 0
-                changeScreen = True
-    elif currentType == 2:
-        if trigger == 0:
-            print('load walkway')
-            current = Dialog.Dialog(size, "Dialogs/dialog_walkway1.txt")
+            current = Dialog.Dialog(size, "Dialogs/dialog1.txt")
             currentType = 1
-            currentIndex = 4
+            currentIndex = 0
             changeScreen = True
     return current, currentType, currentIndex, changeScreen
 
