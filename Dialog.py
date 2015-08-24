@@ -5,6 +5,7 @@ class Dialog:
 		self.size = size
 		self.char1 = []
 		self.char2 = []
+		self.char2state = 0
 		self.words = []
 		self.answerCheck = {}
 		self.answerCode = ""
@@ -84,7 +85,7 @@ class Dialog:
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
 		screen.blit(self.char1[0], (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.4))
-		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
+		screen.blit(self.char2[self.char2state], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
 		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
                 screen.blit(self.answerSurface, (self.size[0]*5/16 - self.answerSurface.get_width()/2, self.size[1]*37/40))
@@ -120,12 +121,15 @@ class Dialog:
                         print(self.answerCode)
                         print(self.answer)
                 self.answerSurface = self.txtFont.render(" ".join(self.answer), 1, self.txtColor)
+                return None
 
         def checkAnswer(self, key):
                 if key in self.answerCheck:
                         print("reaction : ", self.answerCheck[key])
+                        self.char2state = int(self.answerCheck[key]) % 2
                         self.resetAnswer()
-                        return int(self.answerCheck[key])
+                        if not int(self.answerCheck[key]):
+                                return int(self.answerCheck[key])
                 else:
                         self.resetAnswer()
 

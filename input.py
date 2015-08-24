@@ -19,9 +19,12 @@ class Input:
             self.keys.append(False)'''
 
         #other
+        self.trig = 0
+        self.trigger = 0
         self.quit = False
         
     def updateEvents(self):
+        self.trig = False
         self.mouseRelX = 0
         self.mouseRelY = 0
         for i in range(0, 5):
@@ -42,8 +45,12 @@ class Input:
                 self.quit = True
             '''if event.type == pygame.KEYDOWN:
                 pass'''
-				
-	    #other
+
+            #other
+            if event.type == pygame.USEREVENT:
+                self.trig = True
+                self.trigger = event.trigger
+
             if event.type == pygame.QUIT:
                 self.quit = True
             

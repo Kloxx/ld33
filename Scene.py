@@ -16,6 +16,7 @@ class Scene:
         self.objectNames = []
         self.objectRects = []
         self.isObjectHovered = []
+        self.trigger = None
 
         self.loadAssets(txtFile)
 
@@ -34,6 +35,7 @@ class Scene:
                 continue
             if line.startswith("["):
                 var = None
+                break
             if line:
                 if var == 0:
                     self.background = pygame.transform.scale(pygame.image.load(line).convert(), self.size)
@@ -90,6 +92,12 @@ class Scene:
             self.characterFace = 0
         else:
             self.characterPos = self.characterDest
+            if self.trigger != None:
+                triggerEvent = pygame.event.Event(pygame.USEREVENT, self.trigger)
+                pygame.event.post(triggerEvent)
+                # print self.trigger
+                self.trigger = None
+
 
     def isHovered(self, pos):
         self.pos = pos
@@ -109,4 +117,5 @@ class Scene:
     def onClick(self, pos):
         self.setCharacterDest(pos)
 
-        return self.getClickedObject()
+        if self.getClickedObject != None:
+            self.trigger = {'trigger': self.getClickedObject()}
