@@ -59,13 +59,14 @@ class Dialog:
                                  self.size[1] * 0.075 * (i/4) + self.size[1] * 0.7), box))
                 for word in self.words:
                         self.wordSurfaces.append(self.txtFont.render(word, 1, self.txtColor))
-                        
+                self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor) 
                                
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
 		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.char1[0], (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.4))
 		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
+		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
                 for index, box in enumerate(self.wordBoxes):
                         if index < len(self.words):
                                 pygame.draw.rect(screen, (255,255,255), box)
