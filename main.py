@@ -1,7 +1,7 @@
 import sys, pygame
 import Input, Scene, Map, Dialog
 
-size = width, height = 1200,750
+size = width, height = 800,500
 def main(size):
     pygame.init()
     screen = pygame.display.set_mode(size)

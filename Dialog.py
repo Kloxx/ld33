@@ -6,6 +6,7 @@ class Dialog:
 		self.char1 = []
 		self.char2 = []
 		self.words = []
+		self.answerCheck = {}
 		self.answerCode = ""
 		self.answer = []
 		self.isWordUsed = []
@@ -32,6 +33,9 @@ class Dialog:
                         if line == "[words]":
                                 var = 4
                                 continue
+                        if line == "[answers]":
+                                var = 5
+                                continue
                         if line == "[other]":
                                 break
                         if line:
@@ -45,6 +49,9 @@ class Dialog:
                                         self.questionTxt = line
                                 if var == 4:
                                         self.words.append(line)
+                                if var == 5:
+                                        key,value = line.split(":")
+                                        self.answerCheck[key] = value
                 txtFile.close()
 		self.dialogBg = pygame.image.load("Portraits/bg_dialog.png")
 
@@ -70,13 +77,15 @@ class Dialog:
                                               (self.size[0] * 0.125, boxHeight))
                 self.cancelBox = pygame.Rect((self.size[0] * 13/16, self.size[1] * 37/40),
                                              (self.size[0] * 0.125, boxHeight))
+                self.answerSurface = self.txtFont.render("", 1, self.txtColor)
                                
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
-		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.char1[0], (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.4))
 		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
+		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
+                screen.blit(self.answerSurface, (self.size[0]*5/16 - self.answerSurface.get_width()/2, self.size[1]*37/40))
                 for index, box in enumerate(self.wordBoxes):
                         if index < len(self.words):
                                 if self.isWordUsed[index]:
@@ -101,72 +110,27 @@ class Dialog:
                                 print(self.answerCode)
                                 print(self.answer)
                 if self.confirmBox.collidepoint(pos) and len(self.answerCode):
-                        print("confirm")
+                        self.checkAnswer(self.answerCode)
                 if self.cancelBox.collidepoint(pos) and len(self.answerCode):
-                        self.isWordUsed[int(self.answerCode[-1])] = False
+                        self.isWordUsed[int(self.answerCode[-1], 16)] = False
                         self.answerCode = self.answerCode[:-1]
                         self.answer = self.answer[:-1]
                         print(self.answerCode)
                         print(self.answer)
+                self.answerSurface = self.txtFont.render(" ".join(self.answer), 1, self.txtColor)
 
-	def draw_menu(self, screen):
-		menu_font = pygame.font.Font(None, 36)
-		questionDisplay = menu_font.render(question, 1, (255, 255, 255))
-		questionPosition = questionDisplay.get_rect()
-		questionPosition.centerx = screen.get_rect().centerx
-		questionPosition.y = self.size[1]*0.7
-		screen.blit(questionDisplay, questionPosition)
-		
-		nbWords = len(words)
+        def checkAnswer(self, key):
+                if key in self.answerCheck:
+                        print("reaction : ", self.answerCheck[key])
+                self.resetAnswer()
 
-		options = []
-		
-		for index, word in enumerate(words):
-			option = Option(word, ((self.size[0]/(nbWords+1))*(1+index), self.size[1]*0.8), menu_font, screen)
-			options.append(option)
-			
-		for option in options:
-			if option.rect.collidepoint(pygame.mouse.get_pos()):
-				option.hovered = True
-			else:
-				option.hovered = False
-			option.draw()
-
-class Option:
-
-	hovered = False
-
-	def __init__(self, text, pos, menu_font, screen):
-		self.text = text
-		self.pos = pos
-		self.menu_font = menu_font
-		self.screen = screen
-		self.set_rect()
-		self.draw()
-
-	def draw(self):
-		self.set_rend()
-		self.screen.blit(self.rend, self.rect)
-
-	def set_rend(self):
-		self.rend = self.menu_font.render(self.text, True, self.get_color())
-
-	def get_color(self):
-		if self.hovered:
-			return (255, 255, 255)
-		else:
-			return (100, 100, 100)
-		
-	def set_rect(self):
-		self.set_rend()
-		self.rect = self.rend.get_rect()
-		self.rect.topleft = self.pos
-
-class Dictionary:
-
-	def __init__(self):
-		self.words = []
-		dict = open("Dialogs/dictionary.txt", 'r')
-
-		for index, line in enumerate(dialogFile.read().split("\n")):
-			words.append(line)
+        def resetAnswer(self):
+                pygame.time.delay(500)
+                self.answerCode = ""
+		self.answer = []
+		self.answerSurface = self.txtFont.render("", 1, self.txtColor)
+                for i in range(12):
+                        if i < len(self.words):
+                                self.isWordUsed[i] = False
+                        else:
+                                self.isWordUsed[i] = True
