@@ -2,13 +2,14 @@ import pygame
 import Input
 
 class Scene:
-    def __init__(self, txtFile):
+    def __init__(self, size, txtFile):
         self.character = []
         self.background = None
         self.characterPos = 100
         self.characterDest = 100
         self.characterFace = 1
         self.frame = 0
+        self.size = size
         self.loadAssets(txtFile)
 
     def loadAssets(self, txtFile):
@@ -25,12 +26,12 @@ class Scene:
                 var = None
             if line:
                 if var == 0:
-                    self.background = pygame.image.load(line).convert()
+                    self.background = pygame.transform.scale(pygame.image.load(line).convert(), self.size)
                 if var == 1:
                     self.character.append(pygame.image.load(line).convert_alpha())
         txtFile.close()
 
-    def drawScene(self, screen):
+    def draw(self, screen):
         # background
         screen.blit(self.background, (0,0))
 

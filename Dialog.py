@@ -3,11 +3,12 @@ import pygame
 class Dialog:
 	def __init__(self, size, txtFile):
 		self.size = size
-		self.dialogBg = pygame.image.load("Portraits/bg_dialog.png")
 		self.char1 = []
 		self.char2 = []
 		self.words = []
+		self.txtColor = 0, 0, 0
 		self.loadAssets(txtFile)
+		self.loadText()
 
 	def loadAssets(self, txtFile):
                 var = None
@@ -36,22 +37,43 @@ class Dialog:
                                 if var == 1:
                                         self.char2.append(pygame.image.load(line).convert_alpha())
                                 if var == 2:
-                                        self.background = pygame.image.load(line).convert()
+                                        self.background = pygame.transform.scale(pygame.image.load(line).convert(), self.size)
                                 if var == 3:
-                                        self.question = line
+                                        self.questionTxt = line
                                 if var == 4:
                                         self.words.append(line)
                 txtFile.close()
+		self.dialogBg = pygame.image.load("Portraits/bg_dialog.png")
 
         def loadText(self):
-                self.txtFont = pygame.font.Font(None, 36)
-                
-		
+                self.txtFont = pygame.font.Font(None, self.size[1] / 20)
+
+                # words
+                self.wordBoxes = []
+                self.wordSurfaces = []
+                box = boxWidth, boxHeight = int(self.size[0] * 0.225), int(self.size[1] * 0.05)
+                print(box)
+                for i in range(12):
+                        self.wordBoxes.append(pygame.Rect(
+                                (self.size[0] * 0.245 * (i%4) + self.size[0] / 50,
+                                 self.size[1] * 0.075 * (i/4) + self.size[1] * 0.7), box))
+                for word in self.words:
+                        self.wordSurfaces.append(self.txtFont.render(word, 1, self.txtColor))
+                        
+                               
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
-		screen.blit(self.dialogBg, (0, self.size[1]*2/3))
+		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.char1[0], (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.4))
 		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
+                for index, box in enumerate(self.wordBoxes):
+                        if index < len(self.words):
+                                pygame.draw.rect(screen, (255,255,255), box)
+                                screen.blit(self.wordSurfaces[index],
+                                            (box.centerx - self.wordSurfaces[index].get_width() / 2,
+                                             box.centery - self.wordSurfaces[index].get_height() / 2))
+                        else:
+                                pygame.draw.rect(screen, (120,120,120), box)
 
 	def draw_menu(self, screen):
 		menu_font = pygame.font.Font(None, 36)

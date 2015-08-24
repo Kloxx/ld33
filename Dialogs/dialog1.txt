@@ -17,6 +17,8 @@ you
 me
 friend
 ugly
+yes
+no
 
 [other]
 NEW WORDS : you - me - friend - ugly - (yes)
