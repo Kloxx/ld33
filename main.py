@@ -36,7 +36,7 @@ def mainLoop(screen):
         if inputs.quit == True:
             endLoop = 1
         if inputs.mouseRelX or inputs.mouseRelY:
-            if currentType == 2:
+            if currentType == 2 or currentType == 0:
                 current.isHovered(inputs.getMousePos())
             pass
         if inputs.mouseButtons[0]:
@@ -50,8 +50,8 @@ def mainLoop(screen):
             pass
 
         if gameStart:
-            current = Map.Map()
-            currentType = 2
+            current = Scene.Scene(size, "scenes/scene1.txt")
+            currentType = 0
             currentIndex = 0
             gameStart = False
 

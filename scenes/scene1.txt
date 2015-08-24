@@ -5,3 +5,9 @@ assets/scene1/background.png
 assets/scene1/character1.png
 assets/scene1/character2.png
 assets/scene1/character3.png
+
+[objects]
+cafeteria:110,53,220,147
+labo:455,75,233,150
+pont:128,432,193,129
+ordi:452,375,271,150
