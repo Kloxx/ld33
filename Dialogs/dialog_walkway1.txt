@@ -1,13 +1,11 @@
 [character1]
-assets/dialog1/happy.png
-assets/dialog1/normal.png
+assets/portraits/dude-box.png
 
 [character2]
-assets/dialog1/okay.png
-assets/dialog1/sad.png
+assets/portraits/gard.png
 
 [background]
-assets/scene1/background.png
+assets/backgrounds/walkway.png
 
 [question]
 You ugly! Me friend. You?

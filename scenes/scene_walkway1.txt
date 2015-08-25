@@ -1,15 +1,23 @@
-[]
+[background]
+assets/backgrounds/walkway.png
 
-[]
+[character]
+assets/walk_robot/wr1.png
+assets/walk_robot/wr2.png
+assets/walk_robot/wr3.png
+assets/walk_robot/wr4.png
+assets/walk_robot/wr5.png
+assets/walk_robot/wr6.png
+assets/walk_robot/wr7.png
+assets/walk_robot/wr8.png
 
 [objects]
 
-Exit:000:Looks like our friend here is guarding the passage.:I guess I should talk to him.:I bet he's a good person.:Maybe we can be friends?:
+Guard:0,0,0,0:I'd better not insist.:He gets grumpy for like no reason.:::
+Exit:0,0,0,0:Looks like our friend here is guarding the passage.:I guess I should talk to him.:I bet he's a good person.:Maybe we can be friends?:
 
-Arrows:000:It seems to be this way.:Or maybe that way?:They seem to have no sense of direction around here.::
-Tunnel:000:Looks like a dump. Litterally.:I don't want to go in there!:I'll end up crushed between two walls.:I bet there's a big slimy worm in there!:
-Minigun:000:That thing looks positively deadly.:Well, nothing positive about it, really.:It's welded to the ceilling, mate.:I wish I could.:
+Arrows:0,0,0,0:It seems to be this way.:Or maybe that way?:They seem to have no sense of direction around here.::
+Tunnel:0,0,0,0:Looks like a dump. Litterally.:I don't want to go in there!:I'll end up crushed between two walls.:I bet there's a big slimy worm in there!:
+Minigun:0,0,0,0:That thing looks positively deadly.:Well, nothing positive about it, really.:It's welded to the ceilling, mate.:I wish I could.:
 
 [others]
-
-:000:::::

@@ -47,17 +47,16 @@ def mainLoop(screen):
                 trigger = current.isBoxClicked(inputs.getMousePos())
             if currentType == 2:
                 trigger = current.getClickedRoom()
-                print(trigger)
-            pass
-        if inputs.mouseButtons[2]:
-            current.displayComment("blabla")
+            if currentType == 3:
+                trigger = 0
+                
         if inputs.trig:
             trigger = inputs.trigger
 
         if gameStart:
             print('intro')
-            current = Scene.Scene(size, "scenes/scene_lab1.txt")
-            currentType = 0
+            current = Dialog.Dialog2(size, "Dialogs/dialog_intro.txt")
+            currentType = 3
             currentIndex = 2
             gameStart = False
 
@@ -66,7 +65,6 @@ def mainLoop(screen):
             current, currentType, currentIndex, changeScreen, changeState = triggerManager(trigger, current, currentType, currentIndex, isTriggered)
             if changeState is not None:
                 isTriggered[changeState] = 1
-                print(isTriggered)
             trigger = None
             
         if changeScreen:
@@ -95,7 +93,6 @@ def mainLoop(screen):
     print(avgFramerate)
 
 def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
-    print('trigger : ', trigger)
     changeScreen = False
     changeState = None
     # scenes
@@ -103,8 +100,12 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
         if currentIndex == 2:
             # lab
             current.displayComment(trigger)
-            if trigger == 0: # box
+            if trigger == 0 and not isTriggered[0]: # box
                 changeState = 0
+                current = Scene.Scene(size, "scenes/scene_lab2.txt")
+                currentType = 0
+                currentIndex = 2
+                changeScreen = True
             if trigger == 1: # switch
                 changeState = 1
             if trigger == 2: # door
@@ -154,7 +155,7 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
         if trigger == 0:
             if currentIndex == 4:
                 # end guard1 -> map
-                current = Map.Map()
+                current = Map.Map(size)
                 currentType = 2
                 currentIndex = 0
                 changeScreen = True
@@ -191,15 +192,36 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
     # map
     elif currentType == 2:
         if trigger == 0: # cantina
-            pass
+            current = Scene.Scene(size, "scenes/scene_cantina1.txt")
+            currentType = 0
+            currentIndex = 5
+            changeScreen = True
         if trigger == 1: # labo
-            pass
+            current = Scene.Scene(size, "scenes/scene_lab2.txt")
+            currentType = 0
+            currentIndex = 2
+            changeScreen = True
         if trigger == 2: # deck
-            pass
+            current = Scene.Scene(size, "scenes/scene_flightdeck1.txt")
+            currentType = 0
+            currentIIndex = 12
+            changeScreen = True
         if trigger == 3: # mainframe
-            pass
+            current = Scene.Scene(size, "scenes/scene_mainframe1.txt")
+            currentType = 0
+            currentIndex = 10
+            changeScreen = True
         if trigger == 4: # walkway
             pass
+
+    # auto-dialogs
+    elif currentType == 3:
+        trigger = current.nextSentence()
+        if trigger:
+            current = Scene.Scene(size, "scenes/scene_lab1.txt")
+            currentType = 0
+            currentIndex = 2
+            changeScreen = True
     return current, currentType, currentIndex, changeScreen, changeState
 
 main(size)

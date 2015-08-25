@@ -84,8 +84,8 @@ class Dialog:
                                
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
-		screen.blit(self.char1[0], (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.4))
-		screen.blit(self.char2[self.char2state], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.4))
+		screen.blit(pygame.transform.flip(self.char1[0], 1, 0), (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.15))
+		screen.blit(self.char2[self.char2state], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.15))
 		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
                 screen.blit(self.answerSurface, (self.size[0]*5/16 - self.answerSurface.get_width()/2, self.size[1]*37/40))
@@ -143,3 +143,61 @@ class Dialog:
                                 self.isWordUsed[i] = False
                         else:
                                 self.isWordUsed[i] = True 
+
+class Dialog2:
+	def __init__(self, size, txtFile):
+		self.size = size
+		self.char1 = []
+		self.char2 = []
+		self.char2state = 0
+		self.dialog = []
+		self.marker = 0
+		self.txtColor = 0, 0, 0
+		self.loadAssets(txtFile)
+		self.loadText()
+
+	def loadAssets(self, txtFile):
+                var = None
+                txtFile = open(txtFile, "r")
+                for line in txtFile.read().split("\n"):
+                        if line == "[character1]":
+                                var = 0
+                                continue
+                        if line == "[character2]":
+                                var = 1
+                                continue
+                        if line == "[background]":
+                                var = 2
+                                continue
+                        if line == "[dialog]":
+                                var = 3
+                                continue
+                        if line:
+                                if var == 0:
+                                        self.char1.append(pygame.image.load(line).convert_alpha())
+                                if var == 1:
+                                        self.char2.append(pygame.image.load(line).convert_alpha())
+                                if var == 2:
+                                        self.background = pygame.transform.scale(pygame.image.load(line).convert(), self.size)
+                                if var == 3:
+                                        self.dialog.append(line)
+                txtFile.close()
+		self.dialogBg = pygame.image.load("Portraits/bg_dialog.png")
+
+        def loadText(self):
+                self.txtFont = pygame.font.Font(None, self.size[1] / 10)
+                              
+	def draw(self, screen):
+                screen.blit(self.background, (0,0))
+		screen.blit(pygame.transform.flip(self.char1[0], 1, 0), (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.2))
+		screen.blit(self.char2[self.char2state], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.2))
+		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
+		text = self.txtFont.render(self.dialog[self.marker], 1, self.txtColor)
+		screen.blit(text, (self.size[0]/2 - text.get_width()/2, self.size[1]*5/8))
+
+	def nextSentence(self):
+                self.marker += 1
+                if self.marker < len(self.dialog):
+                        return False
+                else:
+                        return True

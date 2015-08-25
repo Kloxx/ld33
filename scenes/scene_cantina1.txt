@@ -1,19 +1,28 @@
-[]
+[background]
+assets/backgrounds/cantina.png
 
-[]
+[character]
+assets/walk_robot/wr1.png
+assets/walk_robot/wr2.png
+assets/walk_robot/wr3.png
+assets/walk_robot/wr4.png
+assets/walk_robot/wr5.png
+assets/walk_robot/wr6.png
+assets/walk_robot/wr7.png
+assets/walk_robot/wr8.png
 
 [objects]
 
-Cook:0,0,100,100:::::
-Blender:000:That big guy is blocking the way.:Looks like he's the chef.:::
-Menu:000:Gibberish.:I sure hope they're vegetarians.:I wonder what's for dessert?::
-Empty table:000:One big empty table all to myself.:Just like in High School.:*SIGH*::
+Cook:0,0,100,100:It's over between us. But he will always keep a special place in my heart.:Oh I'm sure he'll do fine without me.:::
+Blender:0,0,0,0:That big guy is blocking the way.:Looks like he's the chef.:::
+Menu:0,0,0,0:Gibberish.:I sure hope they're vegetarians.:I wonder what's for dessert?::
+Empty table:0,0,0,0:One big empty table all to myself.:Just like in High School.:*SIGH*::
 
-Stains:000:Disdain for sanitary regulations seems to be a universal trait.:Hey man, I'm a cook. Not my job.:I'll call health and safety on their asses.:Disgusting.:
-Trade union poster:000:"Join ZULUX and get raised!":Looks like some more trade union propaganda.:I didn't see them at the last meeting.:I DO deserve a raise. Maybe I'll sign up.:
-Pink slime:000:So THIS is how it's made.:I'm not eating this, mate.:I bet it's full of cholesterol.:I've got a bad enough breath already.:
+Stains:0,0,0,0:Disdain for sanitary regulations seems to be a universal trait.:Hey man, I'm a cook. Not my job.:I'll call health and safety on their asses.:Disgusting.:
+Trade union poster:0,0,0,0:"Join ZULUX and get raised!":Looks like some more trade union propaganda.:I didn't see them at the last meeting.:I DO deserve a raise. Maybe I'll sign up.:
+Pink slime:0,0,0,0:So THIS is how it's made.:I'm not eating this, mate.:I bet it's full of cholesterol.:I've got a bad enough breath already.:
 
 [others]
 
-Blender_unlocked:000:I'll cook my favorite, burned steak with overcooked pasta!:That guard out there sure seems to like it.:And Geena always said I was a terrible cook!:Maybe I could settle here, be a chef.:
-Empty table_guard eating:000:Hey! It's that guard from before.:Boy, he sure seems to enjoy his plate.:I wonder who's guarding the computer room now...::
+Blender_unlocked:0,0,0,0:I'll cook my favorite, burned steak with overcooked pasta!:That guard out there sure seems to like it.:And Geena always said I was a terrible cook!:Maybe I could settle here, be a chef.:
+Empty table_guard eating:0,0,0,0:Hey! It's that guard from before.:Boy, he sure seems to enjoy his plate.:I wonder who's guarding the computer room now...::

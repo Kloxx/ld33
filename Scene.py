@@ -12,7 +12,7 @@ class Scene:
         self.size = size
         self.pos = (0,0)
         var = 0
-        self.objectFont = pygame.font.Font(None, 36)
+        self.objectFont = pygame.font.Font(None, 18)
         self.objectNames = []
         self.objectRects = []
         self.objectComments = []
@@ -96,7 +96,7 @@ class Scene:
             commentPosition.y = 300 - 30
             screen.blit(commentDisplay, commentPosition)
             pygame.display.flip()
-            pygame.time.delay(2500)
+            pygame.time.delay(1200)
             self.showComment = False
 
     def setCharacterDest(self, pos):

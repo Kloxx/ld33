@@ -1,0 +1,22 @@
+[character1]
+assets/portraits/labo-dude.png
+
+[character2]
+assets/portraits/doctor.png
+
+[background]
+assets/backgrounds/labo.png
+
+[dialog]
+Greetings, earthling ugly monster!
+You guest. Me doctor.
+We watch you.
+We think you very funny.
+Ugly, but funny.
+Do something earthly, please!
+...
+No? Hum... Wait. 
+Me go get laser-whip.
+Works good on earthlings.
+...
+Oh! Please no escape.

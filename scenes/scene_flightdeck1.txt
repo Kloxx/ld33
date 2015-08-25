@@ -1,14 +1,22 @@
-[]
+[background]
+assets/backgrounds/deck.png
 
-[]
+[character]
+assets/walk_robot/wr1.png
+assets/walk_robot/wr2.png
+assets/walk_robot/wr3.png
+assets/walk_robot/wr4.png
+assets/walk_robot/wr5.png
+assets/walk_robot/wr6.png
+assets/walk_robot/wr7.png
+assets/walk_robot/wr8.png
 
 [objects]
+Navigator:0,0,0,0:I think I have used enough of his time.:Let's bother someone else.:::
+Screen:0,0,0,0:That's the navigation system.:I could divert the ship to Earth, but I need coordinates.:Maybe the big computer next door knows the coordinates?::
 
-Screen:000:That's the navigation system.:I could divert the ship to Earth, but I need coordinates.:Maybe the big computer next door knows the coordinates?::
-
-Windshield:000:Hey! Why didn't I get the room with view?:I hope they have big wipers for space bugs.:Isn't that Rigel VII on the left?:I never could find my bearings out of the Milky Way...:
-Control stick:000:Cool! Let's play some Invaders!:That's one big fat stick.:No more comment on the matter.:Pervert!:No. I won't.
+Windshield:0,0,0,0:Hey! Why didn't I get the room with view?:I hope they have big wipers for space bugs.:Isn't that Rigel VII on the left?:I never could find my bearings out of the Milky Way...:
+Control stick:0,0,0,0:Cool! Let's play some Invaders!:That's one big fat stick.:No more comment on the matter.:Pervert!:No. I won't.
 
 [others]
 
-:000:::::

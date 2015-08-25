@@ -2,17 +2,17 @@
 assets/backgrounds/labo.png
 
 [character]
-assets/walk/1.png
-assets/walk/2.png
-assets/walk/3.png
-assets/walk/4.png
-assets/walk/5.png
-assets/walk/6.png
-assets/walk/7.png
-assets/walk/8.png
+assets/walk_robot/wr1.png
+assets/walk_robot/wr2.png
+assets/walk_robot/wr3.png
+assets/walk_robot/wr4.png
+assets/walk_robot/wr5.png
+assets/walk_robot/wr6.png
+assets/walk_robot/wr7.png
+assets/walk_robot/wr8.png
 
 [objects]
-Box:120,120,100,100:Boy! That would make some fine disguise.::::
+Box:0,0,0,0:::::
 Switch:300,400,100,100:Wow, magic! Their technology is so much more advanced than ours!::::
 Door:600,100,100,100:It's locked.:I feel like that locked door is limiting my options.:Locked. I'll just stay here and die of boredom.::
 
