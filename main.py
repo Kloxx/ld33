@@ -1,7 +1,7 @@
 import sys, pygame
 import Input, Scene, Map, Dialog
 
-size = width, height = 800,500
+size = width, height = 1600, 1000
 def main(size):
     pygame.init()
     screen = pygame.display.set_mode(size)
@@ -108,7 +108,7 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
                 changeScreen = True
             if trigger == 1: # switch
                 changeState = 1
-            if trigger == 2: # door
+            if trigger == 2 and not isTriggered[2]: # door
                 if isTriggered[0] and isTriggered[1]:
                     # -> dialog guard1
                     current = Dialog.Dialog(size, "dialogs/dialog_walkway1.txt")
@@ -119,36 +119,54 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
                     pass
                 elif isTriggered[1]: # ouvert, mais...
                     pass
+            if trigger == 2 and isTriggered[2]:
+                current = Map.Map(size)
+                currentType = 2
+                currentIndex = 0
+                changeScreen = True
         if currentIndex == 5:
             # cantina
-            if trigger == 0: # cook
+            if trigger == 0 and not isTriggered[3]: # cook
                 # -> dialog cook
                 current = Dialog.Dialog(size, "dialogs/dialog_cantina1.txt")
                 currentType = 1
                 currentIndex = 6
                 changeScreen = True
+            if trigger == 0 and isTriggered[3]:
+                current.displayComment(0)
+            if trigger == 1:
+                current.displayComment(1)
+                changeState = 4
         if currentIndex == 10:
             # mainframe
             if trigger == 0: # guard2
-                # -> dialog guard2
-                current = Dialog.Dialog(size, "dialogs/dialog_mainframe1.txt")
-                currentType = 1
-                currentIndex = 8
-                changeScreen = True
+                if not isTriggered[5]:
+                    # -> dialog guard2
+                    current = Dialog.Dialog(size, "dialogs/dialog_mainframe1.txt")
+                    currentType = 1
+                    currentIndex = 8
+                    changeScreen = True
+                else:
+                    current.displayComment(0)
             if trigger == 1: # computer
-                # -> dialog computer
-                current = Dialog.Dialog(size, "dialogs/dialog_mainframe2.txt")
-                currentType = 1
-                currentIndex = 9
-                changeScreen = True
+                if not isTriggered[6]:
+                    # -> dialog computer
+                    current = Dialog.Dialog(size, "dialogs/dialog_mainframe2.txt")
+                    currentType = 1
+                    currentIndex = 9
+                    changeScreen = True
+                else:
+                    current.displayComment(1)
         if currentIndex == 12:
             # deck
             if trigger == 0: # navigator
-                current = Dialog.Dialog(size, "dialogs/dialog_flightdeck1.txt")
-                currentType = 1
-                currentIndex = 11
-                changeScreen = True             
-                
+                if not isTriggered[7]:
+                    current = Dialog.Dialog(size, "dialogs/dialog_flightdeck1.txt")
+                    currentType = 1
+                    currentIndex = 11
+                    changeScreen = True
+                else:
+                    current.displayComment(0)
 
     # dialogs
     elif currentType == 1:
