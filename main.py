@@ -128,7 +128,7 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
             # cantina
             if trigger == 0 and not isTriggered[3]: # cook
                 # -> dialog cook
-                current = Dialog.Dialog(size, "dialogs/dialog_cantina1.txt")
+                current = Dialog.Dialog(size, "dialogs/dialog_kitchen1.txt")
                 currentType = 1
                 currentIndex = 6
                 changeScreen = True
@@ -171,6 +171,7 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
     # dialogs
     elif currentType == 1:
         if trigger == 0:
+            current.changeQuestion("(Don't really know what I just told, but it worked)")
             if currentIndex == 4:
                 # end guard1 -> map
                 current = Map.Map(size)
@@ -180,7 +181,7 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
                 changeState = 2
             if currentIndex == 6:
                 # end cook -> cantina
-                current = Scene.Scene(size, "scenes/scene_cantina1.txt")
+                current = Scene.Scene(size, "scenes/scene_kitchen1.txt")
                 currentType = 0
                 currentIndex = 5
                 changeScreen = True
@@ -206,11 +207,20 @@ def triggerManager(trigger, current, currentType, currentIndex, isTriggered):
                 currentIndex = 12
                 changeScreen = True
                 changeState = 7
+        if trigger == 1:
+            current.changeQuestion("(He looks amused)")
+        if trigger == 2:
+            current.changeQuestion("(He seems angry after me, but why ?)")
+        if trigger == 3:
+            current.changeQuestion("(Ooops, I might have hurt his feelings)")
+        if trigger == 4:
+            current.changeQuestion("(Is it a smile on his 'face' ? Looks horrible)")
+            
 
     # map
     elif currentType == 2:
-        if trigger == 0: # cantina
-            current = Scene.Scene(size, "scenes/scene_cantina1.txt")
+        if trigger == 0: # kitchen
+            current = Scene.Scene(size, "scenes/scene_kitchen1.txt")
             currentType = 0
             currentIndex = 5
             changeScreen = True

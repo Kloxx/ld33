@@ -1,5 +1,5 @@
 [background]
-assets/backgrounds/cantina.png
+assets/backgrounds/kitchen.png
 
 [character]
 assets/walk_robot/wr1.png
@@ -13,8 +13,8 @@ assets/walk_robot/wr8.png
 
 [objects]
 
-Cook:0,0,100,100:It's over between us. But he will always keep a special place in my heart.:Oh I'm sure he'll do fine without me.:::
-Blender:0,0,0,0:That big guy is blocking the way.:Looks like he's the chef.:::
+Cook:220,280,100,100:It's over between us. But he will always keep a special place in my heart.:Oh I'm sure he'll do fine without me.:::
+Blender:1273,532,0,0:That big guy is blocking the way.:Looks like he's the chef.:::
 Menu:0,0,0,0:Gibberish.:I sure hope they're vegetarians.:I wonder what's for dessert?::
 Empty table:0,0,0,0:One big empty table all to myself.:Just like in High School.:*SIGH*::
 

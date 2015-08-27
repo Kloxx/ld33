@@ -13,8 +13,8 @@ assets/walk_robot/wr8.png
 
 [objects]
 Box:0,0,0,0:::::
-Switch:300,400,100,100:Wow, magic! Their technology is so much more advanced than ours!::::
-Door:600,100,100,100:It's locked.:I feel like that locked door is limiting my options.:Locked. I'll just stay here and die of boredom.::
+Switch:80,310,55,135:Wow, magic! Their technology is so much more advanced than ours!::::
+Door:1500,180,180,330:It's locked.:I feel like that locked door is limiting my options.:Locked. I'll just stay here and die of boredom.::
 
 [othe]
 Hamburgers:0,0,0,0:I knew it! These things are too good to be made by earthlings.:Wait... These are McFishes! What a bummer...:There's no way I eat this, mate.::
@@ -27,3 +27,6 @@ Rocking horse:0,0,0,0:Well, don't get on your high horse yet.:I don't feel quite
 [others]
 
 Door_open:0,0,0,0:There's a guard out there.:I can't go out dressed like that.:I need big guns!:Or maybe a disguise?:
+
+[sountrack]
+assets/audio/effects/cockpit.ogg

@@ -14,7 +14,7 @@ assets/walk_robot/wr8.png
 [objects]
 
 Guard:0,0,0,0:Hello? Hello?! Guess he's not the talkative type.:He must be starving, standing all day like that.:Surely that computer inside has some clever answers to all this.:Let's hope it doesn't run on Vista.:
-Computer:0,0,0,0:Uh-oh. Looks like a 404.::::
+Computer:1000,70,500,930:Uh-oh. Looks like a 404.::::
 Keypad:0,0,0,0:Definitely not designed for human fingers.::::
 Printer:0,0,0,0:Let's see...:"Monthly report on power efficiency in Sector G":Petition to kill the ship's cook and then cook him.:"Earthlings' blood, the new clean energy.":
 Sound system:0,0,0,0:Boy, this is what I call a stereo!:If only I had took my vintage records with me.:I wonder what their music sound like.:Probably something like Justin Bieber.:

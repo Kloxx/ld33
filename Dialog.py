@@ -10,6 +10,7 @@ class Dialog:
 		self.answerCheck = {}
 		self.answerCode = ""
 		self.answer = []
+		self.wait = False
 		self.isWordUsed = []
 		self.txtColor = 0, 0, 0
 		self.loadAssets(txtFile)
@@ -85,7 +86,7 @@ class Dialog:
 	def draw(self, screen):
                 screen.blit(self.background, (0,0))
 		screen.blit(pygame.transform.flip(self.char1[0], 1, 0), (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.15))
-		screen.blit(self.char2[self.char2state], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.15))
+		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.15))
 		screen.blit(self.dialogBg, (0, self.size[1]*3/5))
 		screen.blit(self.question, (self.size[0]/2 - self.question.get_width()/2, self.size[1]*5/8))
                 screen.blit(self.answerSurface, (self.size[0]*5/16 - self.answerSurface.get_width()/2, self.size[1]*37/40))
@@ -102,6 +103,8 @@ class Dialog:
                                 pygame.draw.rect(screen, (120,120,120), box)
                 pygame.draw.rect(screen, (0,255,0), self.confirmBox)
                 pygame.draw.rect(screen, (255,0,0), self.cancelBox)
+                if self.wait:
+                        pygame.time.delay(500)
                 
 
         def isBoxClicked(self, pos):
@@ -142,7 +145,12 @@ class Dialog:
                         if i < len(self.words):
                                 self.isWordUsed[i] = False
                         else:
-                                self.isWordUsed[i] = True 
+                                self.isWordUsed[i] = True
+
+        def changeQuestion(self, text):
+                self.questionTxt = text
+                self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor)
+                self.wait = True
 
 class Dialog2:
 	def __init__(self, size, txtFile):

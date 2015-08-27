@@ -13,8 +13,8 @@ assets/walk_robot/wr8.png
 
 [objects]
 
-Guard:0,0,0,0:I'd better not insist.:He gets grumpy for like no reason.:::
-Exit:0,0,0,0:Looks like our friend here is guarding the passage.:I guess I should talk to him.:I bet he's a good person.:Maybe we can be friends?:
+Guard:480,445,575,552:I'd better not insist.:He gets grumpy for like no reason.:::
+Exit:1440,400,0,0:Looks like our friend here is guarding the passage.:I guess I should talk to him.:I bet he's a good person.:Maybe we can be friends?:
 
 Arrows:0,0,0,0:It seems to be this way.:Or maybe that way?:They seem to have no sense of direction around here.::
 Tunnel:0,0,0,0:Looks like a dump. Litterally.:I don't want to go in there!:I'll end up crushed between two walls.:I bet there's a big slimy worm in there!:
