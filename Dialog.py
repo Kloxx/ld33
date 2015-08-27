@@ -17,6 +17,10 @@ class Dialog:
 		self.loadText()
 
 	def loadAssets(self, txtFile):
+                """
+                txtFile(str) -> None
+                Text parser for assets and text informations
+                """
                 var = None
                 txtFile = open(txtFile, "r")
                 for line in txtFile.read().split("\n"):
@@ -58,6 +62,9 @@ class Dialog:
 		self.dialogBg = pygame.image.load("Portraits/bg_dialog.png")
 
         def loadText(self):
+                """
+                Creates text Surfaces
+                """
                 self.txtFont = pygame.font.Font(None, self.size[1] / 20)
 
                 # words
@@ -84,6 +91,10 @@ class Dialog:
                 self.answerSurface = self.txtFont.render("", 1, self.txtColor)
                                
 	def draw(self, screen):
+                """
+                screen(pygame.Surface) -> None
+                Blits all elements to screen
+                """
                 screen.blit(self.background, (0,0))
 		screen.blit(pygame.transform.flip(self.char1[0], 1, 0), (self.size[0]*1/6 - self.char1[0].get_size()[0]/2, self.size[1]*0.15))
 		screen.blit(self.char2[0], (self.size[0]*5/6 - self.char2[0].get_size()[0]/2, self.size[1]*0.15))
@@ -108,6 +119,11 @@ class Dialog:
                 
 
         def isBoxClicked(self, pos):
+                """
+                pos(int) -> None
+                pos(int) -> Value of the reaction (int)
+                Checks if one of the box is clicked. Calls checkAnswer() if confirm box is clicked.
+                """
                 for index, box in enumerate(self.wordBoxes):
                         if box.collidepoint(pos) and not self.isWordUsed[index] and len(self.answerCode) < 3:
                                 self.answerCode += "%0.1X" % index
@@ -127,6 +143,11 @@ class Dialog:
                 return None
 
         def checkAnswer(self, key):
+                """
+                key(str) -> None
+                key(str) -> Value of the reaction (int)
+                Checks if answer in key exists in *answerCheck* dict. Returns the value if yes.
+                """
                 if key in self.answerCheck:
                         print("reaction : ", self.answerCheck[key])
                         self.char2state = int(self.answerCheck[key]) % 2
@@ -137,6 +158,9 @@ class Dialog:
                         self.resetAnswer()
 
         def resetAnswer(self):
+                """
+                Resets answer text and key.
+                """
                 pygame.time.delay(500)
                 self.answerCode = ""
 		self.answer = []
@@ -148,6 +172,10 @@ class Dialog:
                                 self.isWordUsed[i] = True
 
         def changeQuestion(self, text):
+                """
+                text(str) -> None
+                Changes string in *questionTxt* to *text* and renders to Surface.
+                """
                 self.questionTxt = text
                 self.question = self.txtFont.render(self.questionTxt, 1, self.txtColor)
                 self.wait = True

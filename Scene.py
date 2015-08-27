@@ -25,6 +25,10 @@ class Scene:
         self.loadAssets(txtFile)
 
     def loadAssets(self, txtFile):
+        """
+        txtFile(str) -> None
+        Text parser for assets and text informations
+        """
         var = None
         txtFile = open(txtFile, "r")
         for line in txtFile.read().split("\n"):
@@ -63,6 +67,10 @@ class Scene:
         txtFile.close()
 
     def draw(self, screen):
+        """
+        screen(pygame.Surface) -> None
+        Blits all elements to screen
+        """
         # background
         screen.blit(self.background, (0,0))
 
@@ -88,7 +96,7 @@ class Scene:
             objectNamePosition.y = self.pos[1] + 15
             screen.blit(objectNameDisplay, objectNamePosition)
 
-		# comments
+	# comments
         if self.showComment:
             commentDisplay = self.objectFont.render(self.commentText, 1, (255, 255, 255))
             commentPosition = commentDisplay.get_rect()
@@ -100,10 +108,16 @@ class Scene:
             self.showComment = False
 
     def setCharacterDest(self, pos):
-        
+        """
+        pos(int) -> None
+        Sets character destination to cursor position
+        """
         self.characterDest = pos
 
     def setCharacterPos(self):
+        """
+        Sets character position
+        """
         distance = self.characterDest - self.characterPos
         if distance >= 3:
             self.characterPos += 3
@@ -121,6 +135,11 @@ class Scene:
 
 
     def isHovered(self, pos):
+        """
+        pos(int) -> None
+        pos(int) -> index(int)
+        Checks if an object is hovered. Returns index of the object or None.
+        """
         self.pos = pos
         for index, obj in enumerate(self.objectRects):
             self.isObjectHovered[index] = obj.collidepoint(pos)
@@ -130,6 +149,11 @@ class Scene:
         return None
 
     def getClickedObject(self):
+        """
+        None -> index(int)
+        None -> None
+        Returns index of hovered item when clicked.
+        """
         for index, obj in enumerate(self.isObjectHovered):
             if obj:
                 return index
@@ -142,6 +166,10 @@ class Scene:
             self.trigger = {'trigger': self.getClickedObject()}
 
     def displayComment(self, trigger):
+        """
+        trigger(int) -> None
+        Displays comment about clicked item.
+        """
         self.showComment = True
         self.commentText = self.objectComments[trigger][self.objectCommentCount[trigger]]
         if len(self.objectComments[trigger]) < self.objectCommentCount[trigger]:
