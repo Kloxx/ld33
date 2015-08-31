@@ -136,8 +136,8 @@ class Scene:
 
     def isHovered(self, pos):
         """
-        pos(int) -> None
-        pos(int) -> index(int)
+        pos(int, int) -> None
+        pos(int, int) -> index(int)
         Checks if an object is hovered. Returns index of the object or None.
         """
         self.pos = pos
